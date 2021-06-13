@@ -3,6 +3,9 @@ name = "who"
 version = "0.1.0"
 authors = ["ryoo14 <anana12185@gmail.com>"]
 edition = "2018"
+license = "MIT"
+repository = "https://github.com/ryoo14/who"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
