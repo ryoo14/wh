@@ -13,4 +13,4 @@ inspire [ghq](https://github.com/x-motemen/ghq).
 ## Enviroment Variable
 
 - `WHO_ROOT`
-  - 
+  - root directory
