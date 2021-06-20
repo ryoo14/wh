@@ -10,4 +10,13 @@ readme = "README.md"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0.*"
 clap = "=3.0.0-beta.2"
+
+[lib]
+name = "who"
+path = "src/lib.rs"
+
+[[bin]]
+name = "who"
+path = "src/main.rs"
