@@ -59,7 +59,12 @@ fn main() {
                 }
             }
         },
-        SubCommand::List(l) => println!("list"),
+        SubCommand::List(l) => {
+            // TODO: referctor
+            for path in who::list() {
+                println!("{}", path.unwrap().path().display());
+            }
+        }
         SubCommand::Create(c) => println!("create"),
         SubCommand::Delete(d) => println!("delete"),
     }
