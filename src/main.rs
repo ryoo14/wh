@@ -1,6 +1,5 @@
 use clap::Clap;
-use anyhow::Result;
-use who;
+use who::{root,list};
 
 #[derive(Clap)]
 #[clap(
@@ -47,10 +46,11 @@ struct Delete {
 
 fn main() {
     let opts: Opts = Opts::parse();
+    let root_path = root::path();
 
     match opts.subcmd {
         SubCommand::Root(_) => { 
-            match who::root::path() {
+            match root_path {
                 Ok(p) => {
                     println!("{}", p);
                 },
