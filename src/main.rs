@@ -1,5 +1,6 @@
 use clap::Clap;
 use who::{root,list};
+use anyhow::Result;
 
 #[derive(Clap)]
 #[clap(
@@ -44,28 +45,22 @@ struct Create {
 struct Delete {
 }
 
-fn main() {
+fn main() -> Result<()> {
     let opts: Opts = Opts::parse();
-    let root_path = root::path();
-
+    let root_path = who::root::path()?;
+    
     match opts.subcmd {
         SubCommand::Root(_) => { 
-            match root_path {
-                Ok(p) => {
-                    println!("{}", p);
-                },
-                Err(e) => {
-                    println!("{}", e);
-                }
-            }
+            println!("{}", root_path);
         },
-        SubCommand::List(l) => {
-            // TODO: referctor
-            for path in who::list() {
-                println!("{}", path.unwrap().path().display());
+        SubCommand::List(_) => {
+            let workdir_list = who::list(&root_path)?;
+            for workdir in workdir_list {
+                println!("{}", workdir);
             }
         }
         SubCommand::Create(c) => println!("create"),
         SubCommand::Delete(d) => println!("delete"),
     }
+    Ok(())
 }

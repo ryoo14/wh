@@ -1,13 +1,17 @@
 use std::fs;
-use std::fs::ReadDir;
+use anyhow::Result;
 
 pub mod root;
 pub mod create;
 pub mod delete;
 
-// TODO: referctor
-pub fn list() -> ReadDir {
-    let root_path = root::path().unwrap();
-    let hoge = fs::read_dir(root_path);
-    hoge.unwrap()
+pub fn list(root_path: &str) -> Result<Vec<String>> {
+    let mut workdir_list: Vec<String> = vec![];
+    for dir in fs::read_dir(root_path)? {
+        let path = dir?.path();
+        if path.is_dir() {
+            workdir_list.push(path.display().to_string());
+        }
+    }
+    Ok(workdir_list)
 }
