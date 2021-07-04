@@ -47,14 +47,14 @@ struct Delete {
 
 fn main() -> Result<()> {
     let opts: Opts = Opts::parse();
-    let root_path = wh::root::path()?;
+    let whroot_path = root::path()?;
     
     match opts.subcmd {
         SubCommand::Root(_) => { 
-            println!("{}", root_path);
+            println!("{}", whroot_path);
         },
         SubCommand::List(_) => {
-            let workdir_list = wh::list(&root_path)?;
+            let workdir_list = list(&whroot_path)?;
             for workdir in workdir_list {
                 println!("{}", workdir);
             }

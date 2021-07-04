@@ -2,15 +2,17 @@ use std::fs;
 use anyhow::Result;
 
 pub mod root;
+
+// TODO: implement
 pub mod create;
 pub mod delete;
 
-pub fn list(root_path: &str) -> Result<Vec<String>> {
+pub fn list(whroot_path: &str) -> Result<Vec<String>> {
     let mut workdir_list: Vec<String> = vec![];
-    for dir in fs::read_dir(root_path)? {
-        let path = dir?.path();
-        if path.is_dir() {
-            workdir_list.push(path.display().to_string());
+    for workdir in fs::read_dir(whroot_path)? {
+        let workdir_path = workdir?.path();
+        if workdir_path.is_dir() {
+            workdir_list.push(workdir_path.display().to_string());
         }
     }
     Ok(workdir_list)

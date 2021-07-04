@@ -4,13 +4,13 @@ use anyhow::Result;
 pub fn path() -> Result<String> {
     let wh_root = "WHROOT";
     match env::var(wh_root) {
-        Ok(wr) => {
-           Ok(wr) 
+        Ok(whroot_path) => {
+           Ok(whroot_path)
         },
         Err(_) => {
             let home = "HOME";
-            let h = env::var(home)?;
-            Ok(h + "/wh")
+            let homedir_path = env::var(home)?;
+            Ok(homedir_path + "/wh")
         }
     }
 }
