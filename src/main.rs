@@ -1,5 +1,5 @@
 use clap::Clap;
-use wh::{root,list};
+use wh::{root, list, create};
 use anyhow::Result;
 
 #[derive(Clap)]
@@ -38,6 +38,7 @@ struct List {
 #[derive(Clap)]
 // create working directory
 struct Create {
+    target_dir_name: String,
 }
 
 #[derive(Clap)]
@@ -59,8 +60,20 @@ fn main() -> Result<()> {
                 println!("{}", workdir);
             }
         }
-        SubCommand::Create(c) => println!("create"),
-        SubCommand::Delete(d) => println!("delete"),
+        SubCommand::Create(c) => {
+            let target_dir_fullpath = whroot_path + "/" + &c.target_dir_name;
+            match create(&target_dir_fullpath) {
+                Ok(_) => {
+                    println!("{}", target_dir_fullpath);
+                },
+                Err(e) => {
+                    println!("{}", e);
+                },
+            }
+        },
+        SubCommand::Delete(_) => {
+
+        },
     }
     Ok(())
 }

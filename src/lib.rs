@@ -4,7 +4,6 @@ use anyhow::Result;
 pub mod root;
 
 // TODO: implement
-pub mod create;
 pub mod delete;
 
 pub fn list(whroot_path: &str) -> Result<Vec<String>> {
@@ -16,4 +15,9 @@ pub fn list(whroot_path: &str) -> Result<Vec<String>> {
         }
     }
     Ok(workdir_list)
+}
+
+pub fn create(targetdir_fullpath: &str) -> Result<()> {
+    fs::create_dir(targetdir_fullpath)?;
+    Ok(())
 }
