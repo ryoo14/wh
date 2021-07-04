@@ -1,5 +1,5 @@
 use clap::Clap;
-use who::{root,list};
+use wh::{root,list};
 use anyhow::Result;
 
 #[derive(Clap)]
@@ -47,14 +47,14 @@ struct Delete {
 
 fn main() -> Result<()> {
     let opts: Opts = Opts::parse();
-    let root_path = who::root::path()?;
+    let root_path = wh::root::path()?;
     
     match opts.subcmd {
         SubCommand::Root(_) => { 
             println!("{}", root_path);
         },
         SubCommand::List(_) => {
-            let workdir_list = who::list(&root_path)?;
+            let workdir_list = wh::list(&root_path)?;
             for workdir in workdir_list {
                 println!("{}", workdir);
             }
