@@ -18,5 +18,5 @@ name = "who"
 path = "src/lib.rs"
 
 [[bin]]
-name = "who"
+name = "wh"
 path = "src/main.rs"
