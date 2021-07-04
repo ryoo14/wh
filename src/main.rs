@@ -21,8 +21,6 @@ enum SubCommand {
     List(List),
     #[clap(about = "Create working dir")]
     Create(Create),
-    #[clap(about = "Delete working dir")]
-    Delete(Delete),
 }
 
 #[derive(Clap)]
@@ -39,11 +37,6 @@ struct List {
 // create working directory
 struct Create {
     target_dir_name: String,
-}
-
-#[derive(Clap)]
-// delete working directory
-struct Delete {
 }
 
 fn main() -> Result<()> {
@@ -70,9 +63,6 @@ fn main() -> Result<()> {
                     println!("{}", e);
                 },
             }
-        },
-        SubCommand::Delete(_) => {
-
         },
     }
     Ok(())

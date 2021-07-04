@@ -3,9 +3,6 @@ use anyhow::Result;
 
 pub mod root;
 
-// TODO: implement
-pub mod delete;
-
 pub fn list(whroot_path: &str) -> Result<Vec<String>> {
     let mut workdir_list: Vec<String> = vec![];
     for workdir in fs::read_dir(whroot_path)? {
