@@ -4,7 +4,7 @@ use anyhow::Result;
 
 #[derive(Clap)]
 #[clap(
-    version = "0.1.0",
+    version = "0.1.1",
     author = "ryoo14 <anana12185@gmail.com",
     about = "Manage working dir",
 )]
