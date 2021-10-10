@@ -1,5 +1,5 @@
-use std::fs;
-use std::env;
+use std::{fs, env};
+use git2::Repository;
 use anyhow::Result;
 
 pub struct WorkHub {
@@ -38,6 +38,17 @@ impl WorkHub {
         fs::create_dir(targetdir_full_path)?;
         Ok(())
     }
+
+    // TODO: Fix no error when specifying a non-existent repository.
+    pub fn get(self, repository_path: &str) -> Result<()> {
+        let github_uri = String::from("https://github.com/") + repository_path;
+        let mut repository_vec: Vec<&str> = repository_path.split('/').collect();
+        if repository_vec.len() != 2 {
+            panic!("Invalid input. Make sure that the input value satisfies author/project");
+        }
+        if let Some(p) = repository_vec.pop() {
+            Repository::clone(&github_uri, self.root + "/" + p)?;
+        }
+        Ok(())
+    }
 }
-
-
