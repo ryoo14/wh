@@ -1,5 +1,5 @@
 use clap::Clap;
-use wh::{root, list, create};
+use wh::WorkHub;
 use anyhow::Result;
 
 #[derive(Clap)]
@@ -36,28 +36,27 @@ struct List {
 #[derive(Clap)]
 // create working directory
 struct Create {
-    target_dir_name: String,
+    targetdir_path: String,
 }
 
 fn main() -> Result<()> {
     let opts: Opts = Opts::parse();
-    let whroot_path = root::path()?;
+    let wh = WorkHub::new()?;
     
     match opts.subcmd {
         SubCommand::Root(_) => { 
-            println!("{}", whroot_path);
+            println!("{}", wh.root);
         },
         SubCommand::List(_) => {
-            let workdir_list = list(&whroot_path)?;
+            let workdir_list = wh.list()?;
             for workdir in workdir_list {
                 println!("{}", workdir);
             }
         }
         SubCommand::Create(c) => {
-            let target_dir_fullpath = whroot_path + "/" + &c.target_dir_name;
-            match create(&target_dir_fullpath) {
+            match wh.create(&c.targetdir_path) {
                 Ok(_) => {
-                    println!("{}", target_dir_fullpath);
+                    println!("Successfully created {}", &c.targetdir_path);
                 },
                 Err(e) => {
                     println!("{}", e);
