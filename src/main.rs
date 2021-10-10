@@ -21,6 +21,8 @@ enum SubCommand {
     List(List),
     #[clap(about = "Create working dir")]
     Create(Create),
+    #[clap(about = "Clone Github repository")]
+    Get(Get),
 }
 
 #[derive(Clap)]
@@ -37,6 +39,12 @@ struct List {
 // create working directory
 struct Create {
     targetdir_path: String,
+}
+
+#[derive(Clap)]
+// clone github repository
+struct Get {
+    repository: String,
 }
 
 fn main() -> Result<()> {
@@ -63,6 +71,16 @@ fn main() -> Result<()> {
                 },
             }
         },
+        SubCommand::Get(g) => {
+            match wh.get(&g.repository) {
+                Ok(_) => {
+                    println!("Successfully cloned {}", &g.repository);
+                },
+                Err(e) => {
+                    println!("{}", e);
+                },
+            }
+        }
     }
     Ok(())
 }

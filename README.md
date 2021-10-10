@@ -11,19 +11,23 @@ When you want a temporary workspace that you don't want to manage with git, `wh`
 ```
 cargo install wh
 ```
+
 ## Usage
 
 ```
+Manage working dir
+
 USAGE:
     wh <SUBCOMMAND>
 
 FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+    -h, --help       Print help information
+    -V, --version    Print version information
 
 SUBCOMMANDS:
     create    Create working dir
-    help      Prints this message or the help of the given subcommand(s)
+    get       Clone Github repository
+    help      Print this message or the help of the given subcommand(s)
     list      Prints working dir list
     root      Prints root dir
 ```
