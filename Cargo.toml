@@ -1,6 +1,6 @@
 [package]
 name = "wh"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["ryoo14 <anana12185@gmail.com>"]
 edition = "2018"
 description = "Manage working directories"
