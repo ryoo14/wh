@@ -1,8 +1,10 @@
-use clap::{Parser, Subcommand};
+use clap::{AppSettings, Parser, Subcommand};
 use wh::WorkHub;
 use anyhow::Result;
 
 #[derive(Parser)]
+#[clap(global_setting(AppSettings::UseLongFormatForHelpSubcommand))]
+#[clap(setting(AppSettings::SubcommandRequiredElseHelp))]
 #[clap(
     version = "0.3.0",
     author = "ryoo14 <anana12185@gmail.com",
@@ -15,9 +17,16 @@ struct Opts {
 
 #[derive(Subcommand)]
 enum SubCommand {
+    /// Print root dir
     Root{},
+
+    /// Print working dir list
     List{},
+
+    /// Create working dir
     Create{ targetdir_path: String },
+
+    /// Clone Github repository
     Get{ repository: String },
 }
 
