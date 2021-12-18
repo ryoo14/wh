@@ -6,7 +6,7 @@ use anyhow::Result;
 #[clap(global_setting(AppSettings::UseLongFormatForHelpSubcommand))]
 #[clap(setting(AppSettings::SubcommandRequiredElseHelp))]
 #[clap(
-    version = "0.3.0",
+    version = "0.4.0",
     author = "ryoo14 <anana12185@gmail.com",
     about = "Manage working dir",
 )]
