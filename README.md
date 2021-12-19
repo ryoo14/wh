@@ -4,7 +4,10 @@ Manage working directories.
 
 ## Description
 
-When you want a temporary workspace that you don't want to manage with git, `wh` creates a workspace under a specific dedicated directory.
+It can manage git repository and other working directories.
+
+But now, `list` command only print git repository.  
+I'd like to implement the display of directories not managed by git in the future.
 
 ## Installation
 
@@ -15,8 +18,6 @@ cargo install wh
 ## Usage
 
 ```
-Manage working dir
-
 USAGE:
     wh <SUBCOMMAND>
 
