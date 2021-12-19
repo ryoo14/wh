@@ -25,13 +25,17 @@ impl WorkHub {
 
     pub fn list(self) -> Result<Vec<String>> {
         let mut workdir_list: Vec<String> = vec![];
+        let whroot_slash = self.root + "/";
         // XD
-        WalkDir::new(self.root)
+        WalkDir::new(&whroot_slash)
             .into_iter()
-            .filter_map(|e| e.ok())
-            .filter(|e| e.file_type().is_dir())
-            .filter(|e| e.file_name().to_str().map(|s| s.ends_with(".git")).unwrap_or(false))
-            .for_each(|e| workdir_list.push(e.path().display().to_string().replace("/.git", "")));
+            .filter_map(|a| a.ok())
+            .filter(|b| b.file_type().is_dir())
+            .filter(|d| d.path().ends_with(".git"))
+            .for_each(|e| workdir_list.push(e.path()
+                    .strip_prefix(&whroot_slash).unwrap()
+                    .parent().unwrap()
+                    .display().to_string()));
         Ok(workdir_list)
     }
 
