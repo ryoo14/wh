@@ -1,6 +1,7 @@
 use std::{fs, env};
 use git2::Repository;
 use anyhow::Result;
+use walkdir::WalkDir;
 
 pub struct WorkHub {
     pub root: String,
@@ -24,14 +25,16 @@ impl WorkHub {
 
     pub fn list(self) -> Result<Vec<String>> {
         let mut workdir_list: Vec<String> = vec![];
-        for workdir in fs::read_dir(self.root)? {
-            let workdir_path = workdir?.path();
-            if workdir_path.is_dir() {
-                workdir_list.push(workdir_path.display().to_string());
-            }
-        }
+        // XD
+        WalkDir::new(self.root)
+            .into_iter()
+            .filter_map(|e| e.ok())
+            .filter(|e| e.file_type().is_dir())
+            .filter(|e| e.file_name().to_str().map(|s| s.ends_with(".git")).unwrap_or(false))
+            .for_each(|e| workdir_list.push(e.path().display().to_string().replace("/.git", "")));
         Ok(workdir_list)
     }
+
 
     pub fn create(self, targetdir_path: &str) -> Result<()> {
         let targetdir_full_path = self.root + "/" + &targetdir_path.to_string();
