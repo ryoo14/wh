@@ -21,7 +21,7 @@ cargo install wh
 USAGE:
     wh <SUBCOMMAND>
 
-FLAGS:
+OPTIONS:
     -h, --help       Print help information
     -V, --version    Print version information
 
@@ -29,8 +29,8 @@ SUBCOMMANDS:
     create    Create working dir
     get       Clone Github repository
     help      Print this message or the help of the given subcommand(s)
-    list      Prints working dir list
-    root      Prints root dir
+    list      Print working dir list
+    root      Print root dir
 ```
 
 ## Enviroment Variable
