@@ -19,7 +19,10 @@ enum SubCommand {
     Root{},
 
     /// Print working dir list
-    List{},
+    List{ 
+        #[clap(long, short)]
+        full_path: bool
+    },
 
     /// Create working dir
     Create{ targetdir_path: String },
@@ -36,10 +39,16 @@ fn main() -> Result<()> {
         SubCommand::Root{} => { 
             println!("{}", wh.root);
         },
-        SubCommand::List{} => {
+        SubCommand::List{full_path} => {
             let workdir_list = wh.list()?;
-            for workdir in workdir_list {
-                println!("{}", workdir);
+            if *full_path {
+                for workdir in workdir_list {
+                    println!("{}/{}", WorkHub::new()?.root, workdir);
+                }
+            } else {
+                for workdir in workdir_list {
+                    println!("{}", workdir);
+                }
             }
         }
         SubCommand::Create{ targetdir_path } => {
