@@ -1,10 +1,8 @@
-use clap::{AppSettings, Parser, Subcommand};
+use clap::{Parser, Subcommand};
 use wh::WorkHub;
 use anyhow::Result;
 
 #[derive(Parser)]
-#[clap(global_setting(AppSettings::UseLongFormatForHelpSubcommand))]
-#[clap(setting(AppSettings::SubcommandRequiredElseHelp))]
 #[clap(
     version = "0.5.4",
     author = "ryoo14 <anana12185@gmail.com",
