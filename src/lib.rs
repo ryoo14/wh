@@ -28,6 +28,8 @@ impl WorkHub {
         let whroot_slash = self.root + "/";
         // XD
         WalkDir::new(&whroot_slash)
+            .min_depth(1)
+            .max_depth(4)
             .into_iter()
             .filter_map(|a| a.ok())
             .filter(|b| b.file_type().is_dir())
