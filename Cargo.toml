@@ -5,7 +5,7 @@ authors = ["ryoo14 <anana12185@gmail.com>"]
 edition = "2021"
 description = "Manage working directories"
 license = "MIT"
-repository = "https://github.com/ryoo14/wh"
+repository = "https://gitlab.com/ryoo14/wh"
 readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
