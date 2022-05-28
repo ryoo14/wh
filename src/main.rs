@@ -4,7 +4,7 @@ use wh::WorkHub;
 
 #[derive(Parser)]
 #[clap(
-    version = "0.7.1",
+    version = "0.8.0",
     author = "ryoo14 <anana12185@gmail.com",
     about = "Manage working dir"
 )]
