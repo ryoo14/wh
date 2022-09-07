@@ -4,10 +4,9 @@ Manage working directories.
 
 ## Description
 
-It can manage git repository and other working directories.
+wh is a tool to manage working directories with or without git management. It is useful to work with interactive filtering tools such as [fzf](https://github.com/junegunn/fzf) and [peco](https://github.com/peco/peco).
 
-But now, `list` command only print git repository.  
-I'd like to implement the display of directories not managed by git in the future.
+Inspired by [ghq](https://github.com/x-motemen/ghq).
 
 ## Installation
 
@@ -32,6 +31,8 @@ SUBCOMMANDS:
     list      Print working dir list
     root      Print root dir
 ```
+
+The `wh create` command creates the specified directory under the root directory and also creates a `.wh` directory. wh recognizes the directory containing the `.git` or `.wh` directory as a working directory.
 
 ## Enviroment Variable
 
