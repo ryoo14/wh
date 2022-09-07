@@ -31,7 +31,7 @@ impl WorkHub {
             .into_iter()
             .filter_map(|a| a.ok())
             .filter(|b| b.file_type().is_dir())
-            .filter(|d| d.path().ends_with(".git"))
+            .filter(|d| d.path().ends_with(".git") || d.path().ends_with(".wh"))
             .for_each(|e| {
                 workdir_list.push(
                     e.path()
@@ -41,14 +41,14 @@ impl WorkHub {
                         .unwrap()
                         .display()
                         .to_string(),
-                )
+                );
             });
         Ok(workdir_list)
     }
 
     pub fn create(self, targetdir_path: &str) -> Result<()> {
-        let targetdir_full_path = self.root + "/" + &targetdir_path.to_string();
-        fs::create_dir(targetdir_full_path)?;
+        let targetdir_full_path = self.root + "/" + &targetdir_path.to_string() + "/.wh";
+        fs::create_dir_all(targetdir_full_path)?;
         Ok(())
     }
 
