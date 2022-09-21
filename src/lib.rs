@@ -33,15 +33,17 @@ impl WorkHub {
             .filter(|b| b.file_type().is_dir())
             .filter(|d| d.path().ends_with(".git") || d.path().ends_with(".wh"))
             .for_each(|e| {
-                workdir_list.push(
-                    e.path()
-                        .strip_prefix(&whroot_slash)
-                        .unwrap()
-                        .parent()
-                        .unwrap()
-                        .display()
-                        .to_string(),
-                );
+                let dir = e
+                    .path()
+                    .strip_prefix(&whroot_slash)
+                    .unwrap()
+                    .parent()
+                    .unwrap()
+                    .display()
+                    .to_string();
+                if !workdir_list.contains(&dir) {
+                    workdir_list.push(dir);
+                }
             });
         Ok(workdir_list)
     }
